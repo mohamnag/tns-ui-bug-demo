@@ -26,7 +26,8 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
 <StackLayout>
     <StackLayout class="swiping" [class.swiping]="1 === swipedIndex">
         <Label text="These components make use of several CSS class names that are part of the NativeScript"
-        textWrap="true"></Label>
+               textWrap="true"
+               (tap)="swapIndex()"></Label>
     </StackLayout>
 
     <GridLayout class="page">
