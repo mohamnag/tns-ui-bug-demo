@@ -23,11 +23,41 @@ These components make use of several CSS class names that are part of the Native
 core theme, such as p-20, btn, h2, and list-group. You can view a full list of the
 class names available for styling your app at https://docs.nativescript.org/ui/theme.
 -->
-<GridLayout class="page">
-    <ListView [items]="items" class="list-group">
-        <ng-template let-item="item">
-            <Label [nsRouterLink]="['/item', item.id]" [text]="item.name"
-                class="list-group-item"></Label>
-        </ng-template>
-    </ListView>
-</GridLayout>
+<StackLayout>
+    <StackLayout class="swiping" [class.swiping]="1 === swipedIndex">
+        <Label text="These components make use of several CSS class names that are part of the NativeScript"
+        textWrap="true"></Label>
+    </StackLayout>
+
+    <GridLayout class="page">
+        <RadListView
+                [items]="items"
+                class="list-group"
+                selectionBehavior="None"
+                swipeActions="true"
+                (itemSwipeProgressStarted)="onSwipeStarted($event)"
+                (itemSwipeProgressEnded)="onSwipeEnded($event)"
+        >
+
+            <ng-template let-item="item" let-i="index">
+                <StackLayout class="list-group-item swiping" [class.swiping]="i === swipedIndex">
+                    <Label [text]="item.name"></Label>
+                    <Label *ngIf="item.marked" text="marked!"></Label>
+                </StackLayout>
+            </ng-template>
+
+            <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto">
+                <GridLayout
+                        id="mark-view"
+                        col="0"
+                        (tap)="mark($event)">
+                </GridLayout>
+
+                <GridLayout
+                        id="delete-view"
+                        col="2">
+                </GridLayout>
+            </GridLayout>
+        </RadListView>
+    </GridLayout>
+</StackLayout>

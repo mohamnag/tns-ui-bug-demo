@@ -10,3 +10,20 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
+
+.swiping {
+    background-color: red;
+    border-width: 1;
+    border-color: blue;
+    border-radius: 5;
+}
+
+#mark-view {
+    padding: 20;
+    background-color: #2e3532;
+}
+
+#delete-view {
+    padding: 20;
+    background-color: #8b2635;
+}
